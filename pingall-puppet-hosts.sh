@@ -2,7 +2,7 @@
 # Program name: pingall.sh
 date
 puppet cert list --all | awk '{print $2}' | tr -d '"' > /tmp/all-nodes.txt
-cat /tmp/all-nodes.txt | while read -r output
+while read -r output
 do
     if ping -c 1 "$output" > /dev/null
     then
@@ -10,4 +10,4 @@ do
     else
       echo "node $output is down"
     fi
-done
+done < /tmp/all-nodes.txt

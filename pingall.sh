@@ -2,7 +2,7 @@
 # Program name: pingall
 # Usage: pingall file.txt
 date
-cat "$1" | while read -r output
+while read -r output
 do
     if ping -c 1 "$output" > /dev/null
     then
@@ -10,4 +10,4 @@ do
     else
       echo "node $output is down"
     fi
-done
+done < "$1"
